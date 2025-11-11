@@ -22,18 +22,23 @@ class Afirstperson415Projectile : public AActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 		UProjectileMovementComponent* ProjectileMovement;
 
+		// Mesh for the projectile
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* ballMesh;
 
+		/// Base material for the projectile
 	UPROPERTY(EditAnywhere)
 		UMaterial* baseMat;
 
+		// Random color for each projectile
 	UPROPERTY()
 		FLinearColor randColor;
 
+		// Material for the projectile
 	UPROPERTY(EditAnywhere)
 		UMaterialInterface* projMat;
 
+		// Dynamic material instance for the projectile
 	UPROPERTY()
 		UMaterialInstanceDynamic* dmiMat;
 

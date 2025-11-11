@@ -19,6 +19,7 @@ Afirstperson415Projectile::Afirstperson415Projectile()
 	CollisionComp->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
 	CollisionComp->CanCharacterStepUpOn = ECB_No;
 
+	
 	ballMesh = CreateDefaultSubobject<UStaticMeshComponent>("Ball Mesh");
 
 
@@ -40,13 +41,17 @@ Afirstperson415Projectile::Afirstperson415Projectile()
 }
 
 void Afirstperson415Projectile::BeginPlay()
+
 {
+	// Call the base class and Generates a random color
 	Super::BeginPlay();
 	randColor = FLinearColor(UKismetMathLibrary::RandomFloatInRange(0.f, 1.f), UKismetMathLibrary::RandomFloatInRange(0.f, 1.f), UKismetMathLibrary::RandomFloatInRange(0.f, 1.f), 1.f);
 
+	// Creates a dynamic material instance and sets it to the ball mesh
 	dmiMat = UMaterialInstanceDynamic::Create(projMat, this);
 	ballMesh->SetMaterial(0, dmiMat);
 
+	// Sets the color parameter of the dynamic material instance to the random color
 	dmiMat->SetVectorParameterValue("ProjColor", randColor);
 }
 
@@ -63,11 +68,12 @@ void Afirstperson415Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* Othe
 	// Spawn decal at hit location
 	if (OtherActor != nullptr)
 	{
+		
 		float frameNum = UKismetMathLibrary::RandomFloatInRange(0.f, 3.f);
-
+		
 		auto Decal = UGameplayStatics::SpawnDecalAtLocation(GetWorld(), baseMat, FVector(UKismetMathLibrary::RandomFloatInRange(20.f, 40.f)), Hit.Location, Hit.Normal.Rotation(), 0.f);
 		auto MatInstance = Decal->CreateDynamicMaterialInstance();
-
+	
 		MatInstance->SetVectorParameterValue("Color", randColor);
 		MatInstance->SetScalarParameterValue("Frame", frameNum);
 	}
