@@ -43,6 +43,7 @@ class Afirstperson415Projectile : public AActor
 	UPROPERTY()
 		UMaterialInstanceDynamic* dmiMat;
 
+		// Niagara particle system for the projectile
 	UPROPERTY(EditAnywhere)
 		UNiagaraSystem* colorP;
 

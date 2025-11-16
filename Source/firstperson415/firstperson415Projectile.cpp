@@ -70,6 +70,7 @@ void Afirstperson415Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* Othe
 	// Spawns particle effect and decal at the hit location with random color
 	if (OtherActor != nullptr)
 	{
+		// Spawns particle effect at hit location
 		if (colorP)
 		{
 			UNiagaraComponent* particleComp = UNiagaraFunctionLibrary::SpawnSystemAttached(colorP, HitComp, NAME_None, FVector(-20.f, 0.f, 0.f), FRotator(0.f), EAttachLocation::KeepRelativeOffset, true);
