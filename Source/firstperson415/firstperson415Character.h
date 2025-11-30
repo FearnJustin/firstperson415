@@ -44,6 +44,9 @@ protected:
 	virtual void BeginPlay();
 
 public:
+	/// Boolean to prevent multiple teleports
+	UPROPERTY(EditAnywhere)
+		bool isTeleporting;
 		
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
